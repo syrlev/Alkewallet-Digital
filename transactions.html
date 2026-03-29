@@ -1,49 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wallet App - Movimientos</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-    body {
-      background-color: #f3e5f5;
-      padding-top: 40px;
-      padding-bottom: 40px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .container {
-      max-width: 400px;
-      margin: 0 auto;
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0px 10px 25px rgba(216, 191, 216, 0.5);
-    }
-
-    h2 {
-      text-align: center;
-      color: #62a4e2;
-      margin-bottom: 25px;
-      font-weight: bold;
-    }
-
-    .btn {
-      border-radius: 50px;
-      padding: 10px 20px;
-      margin-bottom: 10px;
-      background-color: #f7548a;
-      border: 1px solid #ffb7b2;
-      color: #ffffff;
-    }
-    
-    .form-control {
-      border-radius: 10px;
-      height: 45px;
-      border: 1px solid #e1bee7;
-    }
-</style>
+  <link rel="stylesheet" href="transactions.css">
 </head>
 <body>
   <div class="container">
@@ -56,42 +18,6 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <script>
-    //como no hay una base de datos real creo una lista fija con informacion falsa para mostrar en pantalla
-    
-    var listaTransacciones = [
-      { tipo: 'Compra', monto: '$50.00', detalle: 'Compra en línea' },
-      { tipo: 'Depósito', monto: '$100.00', detalle: 'Depósito en efectivo' },
-      { tipo: 'Transferencia', monto: '$75.00', detalle: 'Transferencia recibida' },
-      { tipo: 'Compra', monto: '$5550.00', detalle: 'Compra en línea' },
-      { tipo: 'Depósito', monto: '$10500.00', detalle: 'Depósito misma cuenta' },
-      { tipo: 'Transferencia', monto: '$7575.00', detalle: 'Transferencia recibida' }
-    ];
-
-    function mostrarUltimosMovimientos() {
-      
-      //recorre el arreglo de transacciones una por una
-      for (var i = 0; i < listaTransacciones.length; i++) {
-        var transaccion = listaTransacciones[i];
-          
-          //crea el HTML del item
-          var htmlItem = '<li class="list-group-item">' + 
-                         '<strong>' + transaccion.tipo + ':</strong> ' + 
-                         transaccion.detalle + ' - ' + transaccion.monto + 
-                         '</li>';
-
-          //agrega el ítem a la lista en pantalla
-          $('#lista-movimientos').append(htmlItem);
-      }
-    }
-
-    $(document).ready(function() {
-      
-      //al cargar la pagina muestra todos los movimientos por defecto
-      mostrarUltimosMovimientos();
-
-    });
-  </script>
+  <script src="transactions.js"></script>
 </body>
 </html>

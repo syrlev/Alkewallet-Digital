@@ -1,50 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wallet App - Enviar Dinero</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-    
-    body {
-      background-color: #f3e5f5;
-      padding-top: 40px;
-      padding-bottom: 40px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .container {
-      max-width: 400px;
-      margin: 0 auto;
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0px 10px 25px rgba(216, 191, 216, 0.5);
-    }
-
-    h2 {
-      text-align: center;
-      color: #62a4e2;
-      margin-bottom: 25px;
-      font-weight: bold;
-    }
-
-    .btn {
-      border-radius: 50px;
-      padding: 10px 20px;
-      margin-bottom: 10px;
-      background-color: #f7548a;
-      border: 1px solid #ffb7b2;
-      color: #ffffff;
-    }
-    
-    .form-control {
-      border-radius: 10px;
-      height: 45px;
-      border: 1px solid #e1bee7;
-    }
-</style>
+  <link rel="stylesheet" href="sendmoney.css">
 </head>
 <body>
   <div class="container">
@@ -57,7 +18,8 @@
         <input type="text" class="form-control" id="buscador" placeholder="Escribe un nombre...">
     </div>
 
-    <hr> <div id="formulario-contacto">
+    <hr> 
+    <div id="formulario-contacto">
         <h4>Agregar Nuevo Contacto</h4>
         <input type="text" class="form-control mb-2" id="nuevo-nombre" placeholder="Nombre">
         <input type="text" class="form-control mb-2" id="nuevo-cbu" placeholder="CBU">
@@ -98,89 +60,6 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <script>
-    $(document).ready(function() {
-
-      //guardar nuevo contacto
-      $('#btn-guardar').click(function() {
-        //guarda los valores iscritos en los campos en variables
-        var nombre = $('#nuevo-nombre').val();
-        var cbu = $('#nuevo-cbu').val();
-        var alias = $('#nuevo-alias').val();
-        var banco = $('#nuevo-banco').val();
-
-        //verifica que no esten vacios
-        if (nombre !== "" && cbu !== "" && alias !== "" && banco !== "") {
-            
-            //creamos una variable para guardar los datos ingresados
-            var nuevatarjeta = '<li class="list-group-item">' +
-                            '<div class="contact-info">' +
-                            '<input type="radio" name="contacto" value="' + nombre + '"> ' +
-                            '<strong>' + nombre + '</strong><br>' +
-                            '<span class="text-muted small">CBU: ' + cbu + ' | Alias: ' + alias + ' | Banco: ' + banco + '</span>' +
-                            '</div>' +
-                            '</li>';
-
-            //agrega el nuevo contacto al final de la lista
-            $('#contactList').append(nuevatarjeta);
-            
-            //limpia los campos para que queden vacios de nuevo
-            $('#nuevo-nombre').val('');
-            $('#nuevo-cbu').val('');
-            $('#nuevo-alias').val('');
-            $('#nuevo-banco').val('');
-            
-            $('#alerta-container').html('<div class="alert alert-success">Contacto agregado correctamente</div>');
-
-        } else {
-            $('#alerta-container').html('<div class="alert alert-danger">Por favor completa todos los campos del contacto</div>');
-        }
-      });
-
-      //buscador en tiempo real
-      $('#buscador').on('keyup', function() {
-        var valorBusqueda = $(this).val().toLowerCase();
-        
-        //filtra la lista mostrando los que coinciden
-        $('#contactList li').filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(valorBusqueda) > -1)
-        });
-      });
-
-      //logica para enviar dinero
-      $('#btn-enviar').click(function() {
-        var seleccionado = $('input[name="contacto"]:checked').val();
-        var monto = $('#monto-transferencia').val();
-        
-        //recupera el saldo de la memoria
-        var saldoActual = parseInt(localStorage.getItem('saldo')) || 60000;
-
-        if (seleccionado && monto) {
-            
-            //reviza si el dinero alcanza
-            if (parseInt(monto) > saldoActual) {
-                 $('#alerta-container').html('<div class="alert alert-danger">Fondos insuficientes</div>');
-                 return;
-            }
-
-            //realiza la resta y guarda el nuevo saldo
-            var nuevoSaldo = saldoActual - parseInt(monto);
-            localStorage.setItem('saldo', nuevoSaldo);
-
-            $('#alerta-container').html('<div class="alert alert-success">Enviado $' + monto + ' a ' + seleccionado + '</div>');
-            
-            //espera 2 segundos y redirige al menu principal
-            setTimeout(function() {
-                window.location.href = "menu.html";
-            }, 2000);
-            
-        } else {
-            $('#alerta-container').html('<div class="alert alert-warning">Debes seleccionar un contacto e ingresar un monto</div>');
-        }
-      });
-
-    });
-  </script>
+  <script src="sendmoney.js"></script>
 </body>
 </html>

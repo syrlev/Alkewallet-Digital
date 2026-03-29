@@ -1,49 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wallet App - Depositar</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-    body {
-      background-color: #f3e5f5;
-      padding-top: 40px;
-      padding-bottom: 40px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .container {
-      max-width: 400px;
-      margin: 0 auto;
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0px 10px 25px rgba(216, 191, 216, 0.5);
-    }
-
-    h2 {
-      text-align: center;
-      color: #62a4e2;
-      margin-bottom: 25px;
-      font-weight: bold;
-    }
-
-    .btn {
-      border-radius: 50px;
-      padding: 10px 20px;
-      margin-bottom: 10px;
-      background-color: #f7548a;
-      border: 1px solid #ffb7b2;
-      color: #ffffff;
-    }
-    
-    .form-control {
-      border-radius: 10px;
-      height: 45px;
-      border: 1px solid #e1bee7;
-    }
-</style>
+  <link rel="stylesheet" href="deposit.css">
 </head>
 <body>
   <div class="container">
@@ -65,53 +27,4 @@
     
     <div id="leyenda-deposito" class="mt-3 text-center text-success font-weight-bold"></div>
 
-    <a href="menu.html" class="btn btn-secondary btn-block mt-3">Volver al Menú Principal</a>
-  </div>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <script>
-    $(document).ready(function() {
-      
-      var saldo = localStorage.getItem('saldo');
-
-      if (saldo === null) {
-          saldo = 60000;
-      }
-      $('#saldo-actual').text(saldo);
-
-      $('#btn-depositar').click(function() {
-        
-        //guarda valor que escribio el usuario en input
-        var monto = $('#depositAmount').val();
-
-        //verifica que la caja no este vacia.
-        if(monto !== "") {
-          
-          //parseInt() convierte el texto en número para poder sumarlo en vez de que se peguen los textos.
-          var nuevoSaldo = parseInt(saldo) + parseInt(monto);
-          
-          //guarda el resultado de la suma en la memoria del navegador.
-          localStorage.setItem('saldo', nuevoSaldo);
-
-          //muestra mensaje confirmando el monto
-          $('#leyenda-deposito').text('Monto depositado: $' + monto);
-
-          //muestra una alerta verde de exito
-          $('#alert-container').html('<div class="alert alert-success">Depósito realizado con éxito.</div>');
-
-          //se usa setTimeout para esperar 2 segundos antes de volver al menu para que el usuario alcance a leer el mensaje.
-          setTimeout(function() {
-            window.location.href = "menu.html";
-          }, 2000);
-
-        } else {
-          //si la caja esta vacia muestra error.
-          $('#alert-container').html('<div class="alert alert-danger">Ingrese un monto válido</div>');
-        }
-      });
-
-    });
-  </script>
-</body>
-</html>
+    <a href="menu.html" class="btn btn-secondary btn-block mt-3

@@ -5,92 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wallet App</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <style> 
-  /*se mantiene el mismo estilo y css en todos los html para consistencia visual*/
-    body {
-      background-color: #f3e5f5;
-      padding-top: 40px;
-      padding-bottom: 40px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .container {
-      max-width: 400px;
-      margin: 0 auto;
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0px 10px 25px rgba(216, 191, 216, 0.5);
-    }
-
-    h2 {
-      text-align: center;
-      color: #62a4e2;
-      margin-bottom: 25px;
-      font-weight: bold;
-    }
-
-    .btn {
-      border-radius: 50px;
-      padding: 10px 20px;
-      margin-bottom: 10px;
-      background-color: #f7548a;
-      border: 1px solid #ffb7b2;
-      color: #ffffff;
-    }
-    
-    .form-control {
-      border-radius: 10px;
-      height: 45px;
-      border: 1px solid #e1bee7;
-    }
-</style>
+  <link rel="stylesheet" href="menu.css">
 </head>
 <body>
   <div class="container">
     <h2>Menú Principal</h2>
     <div class="form-group">
       <label for="balance">Dinero en cuenta:</label>
-      
       <h3 id="saldo-cuenta">$0</h3>
-    
     </div>
     
     <button type="button" id="btn-depositar" class="btn btn-primary">Depositar</button>
     <button type="button" id="btn-enviar" class="btn btn-primary">Enviar Dinero</button>
     <button type="button" id="btn-movimientos" class="btn btn-primary">Últimos Movimientos</button>
-
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <script>
-    $(document).ready(function() {
-        //se busca en la memoria del navegador si queda un salgo guardado de la sesion anterior.
-        var saldoGuardado = localStorage.getItem('saldo');
-          //si no hay saldo guardado, se inicializa en 60000 por defecto para prueba.
-        if (saldoGuardado === null) {
-            saldoGuardado = 60000;
-        }
-       //muestra el saldo actual, busca la etiqueta h3 y cambia el texto por el valor del saldo actual.
-        $('#saldo-cuenta').text('$' + saldoGuardado);
-      //configuracion de los botones para redirigir a las siguientes paginas
-        $('#btn-depositar').click(function() {
-            alert("Redirigiendo a depositar");
-            window.location.href = "deposit.html";
-        });
-
-        $('#btn-enviar').click(function() {
-            alert("Redirigiendo a enviar dinero");
-            window.location.href = "sendmoney.html";
-        });
-
-        $('#btn-movimientos').click(function() {
-            alert("Redirigiendo a últimos movimientos");
-            window.location.href = "transactions.html";
-        });
-
-    });
-  </script>
+  <script src="menu.js"></script>
 </body>
 </html>
